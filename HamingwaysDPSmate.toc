@@ -1,0 +1,8 @@
+## Interface: 11200
+## Title: HamingwaysDPSmate
+## Author: Hamingway
+## Notes: Personal DPS tracker with detailed spell breakdown (min/max/avg crit vs non-crit)
+## Version: 0.0.4
+## SavedVariablesPerCharacter: HamingwaysDPSmateDB
+
+HamingwaysDPSmate.lua
