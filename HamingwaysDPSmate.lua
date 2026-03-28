@@ -686,7 +686,7 @@ titleTex:SetTexture(0.15, 0.08, 0, 0.95)
 
 local titleText = chromeFrame:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
 titleText:SetPoint("TOPLEFT", mainWin, "TOPLEFT", 4, -2)
-titleText:SetText("|cFFFFAA00HamingwaysDPSmate|r")
+titleText:SetText("|cFFABD473Hamingway's |r|cFFFFFF00DPSmate|r")
 
 -- [Current]/[Overall] toggle (toolbar row 1, left side)
 local segBtn = CreateFrame("Button", nil, chromeFrame)
@@ -723,7 +723,7 @@ local toolbarTex = chromeFrame:CreateTexture(nil, "BACKGROUND")
 toolbarTex:SetHeight(TOOL_H + TOOL_H)
 toolbarTex:SetPoint("TOPLEFT",  mainWin, "TOPLEFT",  0, -TITLE_H)
 toolbarTex:SetPoint("TOPRIGHT", mainWin, "TOPRIGHT", 0, -TITLE_H)
-toolbarTex:SetTexture(0.08, 0.08, 0.12, 0.95)
+toolbarTex:SetTexture(0.10, 0.06, 0, 0.95)
 
 local trackBtn = CreateFrame("Button", nil, chromeFrame)
 trackBtn:SetWidth(90)
@@ -1415,6 +1415,8 @@ ctxBorder:SetTexture(0.25, 0.14, 0, 0.9)
 local ctxItems = {
     { label="|cFFFFCC88[Say]|r",           fn=function() ReportDPS("SAY") end },
     { label="|cFF88DDFF[Guild]|r",         fn=function() ReportDPS("GUILD") end },
+    { label="|cFF88FF88[Party]|r",         fn=function() ReportDPS("PARTY") end },
+    { label="|cFFFF8844[Raid]|r",          fn=function() ReportDPS("RAID") end },
     { label="|cFFAAFFAA[Whisper Target]|r",fn=function()
         local t = UnitName("target")
         if t and UnitIsPlayer("target") then
@@ -1580,7 +1582,7 @@ cfgTitleTex:SetTexture(0.15, 0.08, 0, 0.95)
 
 local cfgTitleText = settingsFrame:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
 cfgTitleText:SetPoint("TOPLEFT", settingsFrame, "TOPLEFT", 6, -2)
-cfgTitleText:SetText("|cFFFFAA00HamingwaysDPSmate - Settings|r")
+cfgTitleText:SetText("|cFFABD473Hamingway's |r|cFFFFFF00DPSmate|r|cFFCCCCCC - Settings|r")
 
 -- Close button
 local cfgCloseBtn = CreateFrame("Button", nil, settingsFrame)
@@ -1599,23 +1601,39 @@ local cfgTabTex = settingsFrame:CreateTexture(nil, "BACKGROUND")
 cfgTabTex:SetHeight(CFG_TAB_H + 2)
 cfgTabTex:SetPoint("TOPLEFT",  settingsFrame, "TOPLEFT",  0, -CFG_TITLE_H)
 cfgTabTex:SetPoint("TOPRIGHT", settingsFrame, "TOPRIGHT", 0, -CFG_TITLE_H)
-cfgTabTex:SetTexture(0.08, 0.08, 0.12, 0.95)
+cfgTabTex:SetTexture(0.10, 0.06, 0, 0.95)
 
 local tabAboutBtn = CreateFrame("Button", nil, settingsFrame)
 tabAboutBtn:SetWidth(70)
 tabAboutBtn:SetHeight(CFG_TAB_H)
 tabAboutBtn:SetPoint("TOPLEFT", settingsFrame, "TOPLEFT", 4, -CFG_TITLE_H - 1)
+local tabAboutBg = tabAboutBtn:CreateTexture(nil, "BACKGROUND")
+tabAboutBg:SetAllPoints(tabAboutBtn)
+tabAboutBg:SetTexture(0.10, 0.06, 0, 0.80)
 local tabAboutTxt = tabAboutBtn:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
 tabAboutTxt:SetAllPoints(tabAboutBtn)
 tabAboutTxt:SetJustifyH("LEFT")
+tabAboutBtn:SetScript("OnEnter", function() tabAboutBg:SetTexture(0.22, 0.13, 0, 0.90) end)
+tabAboutBtn:SetScript("OnLeave", function()
+    if aboutPanel:IsShown() then tabAboutBg:SetTexture(0.30, 0.18, 0, 0.90)
+    else tabAboutBg:SetTexture(0.10, 0.06, 0, 0.80) end
+end)
 
 local tabDisplayBtn = CreateFrame("Button", nil, settingsFrame)
 tabDisplayBtn:SetWidth(80)
 tabDisplayBtn:SetHeight(CFG_TAB_H)
 tabDisplayBtn:SetPoint("TOPLEFT", settingsFrame, "TOPLEFT", 78, -CFG_TITLE_H - 1)
+local tabDisplayBg = tabDisplayBtn:CreateTexture(nil, "BACKGROUND")
+tabDisplayBg:SetAllPoints(tabDisplayBtn)
+tabDisplayBg:SetTexture(0.10, 0.06, 0, 0.80)
 local tabDisplayTxt = tabDisplayBtn:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
 tabDisplayTxt:SetAllPoints(tabDisplayBtn)
 tabDisplayTxt:SetJustifyH("LEFT")
+tabDisplayBtn:SetScript("OnEnter", function() tabDisplayBg:SetTexture(0.22, 0.13, 0, 0.90) end)
+tabDisplayBtn:SetScript("OnLeave", function()
+    if displayPanel:IsShown() then tabDisplayBg:SetTexture(0.30, 0.18, 0, 0.90)
+    else tabDisplayBg:SetTexture(0.10, 0.06, 0, 0.80) end
+end)
 
 local CFG_PANEL_Y = -(CFG_TITLE_H + CFG_TAB_H + 4)
 
@@ -1907,13 +1925,17 @@ end)
 -- Tab switching
 local function SetCfgTab(which)
     if which == "about" then
-        tabAboutTxt:SetText("|cFFFFAA00[About]|r")
+        tabAboutTxt:SetText("|cFFFFFF00[About]|r")
+        tabAboutBg:SetTexture(0.30, 0.18, 0, 0.90)
         tabDisplayTxt:SetText("|cFFAAAAAA[Display]|r")
+        tabDisplayBg:SetTexture(0.10, 0.06, 0, 0.80)
         aboutPanel:Show()
         displayPanel:Hide()
     else
         tabAboutTxt:SetText("|cFFAAAAAA[About]|r")
-        tabDisplayTxt:SetText("|cFFFFAA00[Display]|r")
+        tabAboutBg:SetTexture(0.10, 0.06, 0, 0.80)
+        tabDisplayTxt:SetText("|cFFFFFF00[Display]|r")
+        tabDisplayBg:SetTexture(0.30, 0.18, 0, 0.90)
         aboutPanel:Hide()
         displayPanel:Show()
     end
