@@ -1,5 +1,5 @@
 ## Interface: 11200
-## Title: HamingwaysDPSmate
+## Title: |cffABD473Hamingway's|r |cffFFFF00DPS|rmate
 ## Author: Hamingway
 ## Notes: Personal DPS tracker with detailed spell breakdown (min/max/avg crit vs non-crit)
 ## Version: 0.0.5
