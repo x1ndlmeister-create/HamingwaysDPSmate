@@ -2,7 +2,7 @@
 ## Title: HamingwaysDPSmate
 ## Author: Hamingway
 ## Notes: Personal DPS tracker with detailed spell breakdown (min/max/avg crit vs non-crit)
-## Version: 0.0.4
+## Version: 0.0.5
 ## SavedVariablesPerCharacter: HamingwaysDPSmateDB
 
 HamingwaysDPSmate.lua

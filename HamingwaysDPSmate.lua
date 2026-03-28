@@ -1,4 +1,4 @@
--- HamingwaysDPSmate v0.0.4
+-- HamingwaysDPSmate v0.0.5
 -- Group/Raid DPS meter for WoW 1.12 (Turtle WoW)
 -- Main window: all players sorted by damage, pet damage merged into owner.
 -- Detail window: click a player bar to see their spell breakdown.
@@ -1662,7 +1662,7 @@ local aboutLine1 = aboutPanel:CreateFontString(nil, "OVERLAY", "GameFontNormalSm
 aboutLine1:SetPoint("TOPLEFT",  aboutPanel, "TOPLEFT",  6, -150)
 aboutLine1:SetPoint("TOPRIGHT", aboutPanel, "TOPRIGHT", -6, -150)
 aboutLine1:SetJustifyH("CENTER")
-aboutLine1:SetText("|cFFCCCCCCHamingwaysDPSmate v0.0.4|r")
+aboutLine1:SetText("|cFFCCCCCCHamingwaysDPSmate v0.0.5|r")
 
 local aboutLine2 = aboutPanel:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
 aboutLine2:SetPoint("TOPLEFT",  aboutPanel, "TOPLEFT",  6, -163)
