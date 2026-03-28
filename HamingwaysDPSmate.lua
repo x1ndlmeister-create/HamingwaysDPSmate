@@ -697,6 +697,11 @@ local segBtnText = segBtn:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall"
 segBtnText:SetAllPoints(segBtn)
 segBtnText:SetJustifyH("LEFT")
 segBtnText:SetText("|cFF88FFFF[Current]|r")
+local segBtnHov = segBtn:CreateTexture(nil, "BACKGROUND")
+segBtnHov:SetAllPoints(segBtn)
+segBtnHov:SetTexture(0.35, 0.20, 0, 0)
+segBtn:SetScript("OnEnter", function() segBtnHov:SetTexture(0.35, 0.20, 0, 0.35) end)
+segBtn:SetScript("OnLeave", function() segBtnHov:SetTexture(0.35, 0.20, 0, 0) end)
 
 -- [All]/[Self] view toggle (toolbar row 1, after seg button)
 local viewBtn = CreateFrame("Button", nil, chromeFrame)
@@ -707,6 +712,11 @@ local viewBtnText = viewBtn:CreateFontString(nil, "OVERLAY", "GameFontNormalSmal
 viewBtnText:SetAllPoints(viewBtn)
 viewBtnText:SetJustifyH("LEFT")
 viewBtnText:SetText("|cFFAAAAAA[All]|r")
+local viewBtnHov = viewBtn:CreateTexture(nil, "BACKGROUND")
+viewBtnHov:SetAllPoints(viewBtn)
+viewBtnHov:SetTexture(0.35, 0.20, 0, 0)
+viewBtn:SetScript("OnEnter", function() viewBtnHov:SetTexture(0.35, 0.20, 0, 0.35) end)
+viewBtn:SetScript("OnLeave", function() viewBtnHov:SetTexture(0.35, 0.20, 0, 0) end)
 
 -- Reset button
 local resetBtn = CreateFrame("Button", nil, chromeFrame)
@@ -717,6 +727,8 @@ local resetBtnText = resetBtn:CreateFontString(nil, "OVERLAY", "GameFontNormalSm
 resetBtnText:SetAllPoints(resetBtn)
 resetBtnText:SetJustifyH("RIGHT")
 resetBtnText:SetText("|cFFFF4444Reset|r")
+resetBtn:SetScript("OnEnter", function() resetBtnText:SetText("|cFFFFFF44Reset|r") end)
+resetBtn:SetScript("OnLeave", function() resetBtnText:SetText("|cFFFF4444Reset|r") end)
 
 -- Toolbar (covers two rows: segBtn row + trackBtn/sortBtn row)
 local toolbarTex = chromeFrame:CreateTexture(nil, "BACKGROUND")
@@ -732,6 +744,11 @@ trackBtn:SetPoint("TOPLEFT", mainWin, "TOPLEFT", 4, -TITLE_H - TOOL_H - 1)
 local trackBtnText = trackBtn:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
 trackBtnText:SetAllPoints(trackBtn)
 trackBtnText:SetJustifyH("LEFT")
+local trackBtnHov = trackBtn:CreateTexture(nil, "BACKGROUND")
+trackBtnHov:SetAllPoints(trackBtn)
+trackBtnHov:SetTexture(0.35, 0.20, 0, 0)
+trackBtn:SetScript("OnEnter", function() trackBtnHov:SetTexture(0.35, 0.20, 0, 0.35) end)
+trackBtn:SetScript("OnLeave", function() trackBtnHov:SetTexture(0.35, 0.20, 0, 0) end)
 
 local sortMode = "dps"  -- "dps" or "dmg"
 local viewMode = "all"   -- "all" or "self"
@@ -743,6 +760,11 @@ local sortBtnText = sortBtn:CreateFontString(nil, "OVERLAY", "GameFontNormalSmal
 sortBtnText:SetAllPoints(sortBtn)
 sortBtnText:SetJustifyH("RIGHT")
 sortBtnText:SetText("|cFFAAAAFF[by DPS]|r")
+local sortBtnHov = sortBtn:CreateTexture(nil, "BACKGROUND")
+sortBtnHov:SetAllPoints(sortBtn)
+sortBtnHov:SetTexture(0.35, 0.20, 0, 0)
+sortBtn:SetScript("OnEnter", function() sortBtnHov:SetTexture(0.35, 0.20, 0, 0.35) end)
+sortBtn:SetScript("OnLeave", function() sortBtnHov:SetTexture(0.35, 0.20, 0, 0) end)
 
 -- History browser button (toolbar row 2, centre)
 local histBtn = CreateFrame("Button", nil, chromeFrame)
@@ -753,6 +775,11 @@ local histBtnText = histBtn:CreateFontString(nil, "OVERLAY", "GameFontNormalSmal
 histBtnText:SetAllPoints(histBtn)
 histBtnText:SetJustifyH("LEFT")
 histBtnText:SetText("|cFF888888[Hist]|r")
+local histBtnHov = histBtn:CreateTexture(nil, "BACKGROUND")
+histBtnHov:SetAllPoints(histBtn)
+histBtnHov:SetTexture(0.35, 0.20, 0, 0)
+histBtn:SetScript("OnEnter", function() histBtnHov:SetTexture(0.35, 0.20, 0, 0.35) end)
+histBtn:SetScript("OnLeave", function() histBtnHov:SetTexture(0.35, 0.20, 0, 0) end)
 
 -- History dropdown panel (shown below mainWin on click)
 local HIST_ROW_H   = TOOL_H
